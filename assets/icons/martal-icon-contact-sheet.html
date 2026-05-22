@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Martal icon contact sheet · 01–84</title>
+  <style>
+    :root {
+      --bg: #f6f7f2;
+      --card: #ffffff;
+      --ink: #111111;
+      --muted: #8c8f88;
+      --line: #dde7c7;
+      --green: #8bbb52;
+      --red: #ff4b4f;
+      --shadow: 0 12px 32px rgba(20, 24, 16, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin: 0 auto 24px;
+      max-width: 1480px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .hint {
+      margin: 0;
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .controls {
+      width: min(100%, 1480px);
+      margin: 0 auto 24px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid #d9dfcf;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+      background: #fbfcf8;
+    }
+
+    input[type="file"] { display: none; }
+
+    button,
+    .file-button {
+      appearance: none;
+      border: 1px solid var(--green);
+      background: #eef7dd;
+      color: #5f8e32;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .file-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .status {
+      width: min(100%, 1480px);
+      margin: 0 auto 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      width: min(100%, 1480px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(86px, 1fr));
+      gap: 12px;
+    }
+
+    .tile {
+      min-height: 118px;
+      padding: 12px 10px 10px;
+      display: grid;
+      grid-template-rows: 56px auto auto;
+      gap: 6px;
+      place-items: center;
+      background: var(--card);
+      border: 1px solid #e7ecd9;
+      border-radius: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.035);
+      overflow: hidden;
+    }
+
+    .tile.missing {
+      border-color: #ffd3d5;
+      background: #fff9f9;
+    }
+
+    .icon-wrap {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background:
+        linear-gradient(45deg, #f5f5f5 25%, transparent 25%),
+        linear-gradient(-45deg, #f5f5f5 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #f5f5f5 75%),
+        linear-gradient(-45deg, transparent 75%, #f5f5f5 75%);
+      background-size: 12px 12px;
+      background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+      background-color: #ffffff;
+      border: 1px solid #edf0e6;
+    }
+
+    img {
+      display: block;
+      max-width: 32px;
+      max-height: 32px;
+      object-fit: contain;
+    }
+
+    .num {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .file-name {
+      width: 100%;
+      min-height: 14px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.2;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .missing .num { color: var(--red); }
+    .missing .file-name { color: var(--red); }
+
+    .print-note { display: none; }
+
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: repeat(8, minmax(86px, 1fr)); }
+      .controls { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { padding: 10mm; background: #fff; }
+      header, .controls, .status { display: none; }
+      .print-note { display: block; margin: 0 0 8mm; font: 12px Arial, sans-serif; color: #777; }
+      .grid { width: 100%; grid-template-columns: repeat(12, 1fr); gap: 6px; }
+      .tile { min-height: 92px; border-radius: 8px; box-shadow: none; page-break-inside: avoid; }
+      .icon-wrap { width: 46px; height: 46px; }
+      img { max-width: 30px; max-height: 30px; }
+      .num { font-size: 16px; }
+      .file-name { font-size: 7px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Icon contact sheet · 01–84</h1>
+      <p class="hint">
+        Положи этот HTML рядом с папкой иконок или прямо в папку с иконками. Если автозагрузка не найдёт файлы, нажми “Choose icons folder” и выбери папку. Под каждой иконкой показан её номер и фактическое имя файла.
+      </p>
+    </div>
+  </header>
+
+  <section class="controls">
+    <label>
+      Relative icon folder
+      <input id="folderInput" type="text" value="./" aria-label="Relative icon folder" />
+    </label>
+    <button id="reloadBtn" type="button">Reload relative paths</button>
+    <label class="file-button" for="dirInput">Choose icons folder</label>
+    <input id="dirInput" type="file" webkitdirectory directory multiple accept=".svg,.png,.webp,.jpg,.jpeg" />
+  </section>
+
+  <div id="status" class="status"></div>
+  <div class="print-note">Martal icon contact sheet · 01–84</div>
+  <main id="grid" class="grid" aria-label="Icon grid"></main>
+
+  <script>
+    const TOTAL = 84;
+    const EXTENSIONS = ['svg', 'png', 'webp', 'jpg', 'jpeg'];
+
+    function pad2(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function numberVariants(n) {
+      const p = pad2(n);
+      return [
+        p,
+        String(n),
+        `0.${n}`,
+        `0-${n}`,
+        `icon-${p}`,
+        `icon_${p}`,
+        `icon-${n}`,
+        `icon_${n}`,
+      ];
+    }
+
+    function candidatePaths(folder, n) {
+      const normalized = folder.trim() || './';
+      const base = normalized.endsWith('/') ? normalized : `${normalized}/`;
+      const names = numberVariants(n);
+      const paths = [];
+      for (const name of names) {
+        paths.push(`${base}${name}`);
+        for (const ext of EXTENSIONS) paths.push(`${base}${name}.${ext}`);
+      }
+      return [...new Set(paths)];
+    }
+
+    function makeTile(n) {
+      const tile = document.createElement('article');
+      tile.className = 'tile missing';
+      tile.dataset.n = String(n);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'icon-wrap';
+
+      const img = document.createElement('img');
+      img.alt = `Icon ${pad2(n)}`;
+      img.loading = 'lazy';
+      wrap.appendChild(img);
+
+      const num = document.createElement('div');
+      num.className = 'num';
+      num.textContent = pad2(n);
+
+      const file = document.createElement('div');
+      file.className = 'file-name';
+      file.textContent = 'not found';
+
+      tile.append(wrap, num, file);
+      return tile;
+    }
+
+    function loadWithFallback(img, paths, onSuccess, onFail) {
+      let index = 0;
+      function tryNext() {
+        if (index >= paths.length) {
+          img.removeAttribute('src');
+          onFail?.();
+          return;
+        }
+        const current = paths[index++];
+        img.onload = () => onSuccess?.(current);
+        img.onerror = tryNext;
+        img.src = current;
+      }
+      tryNext();
+    }
+
+    function renderBaseGrid() {
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      for (let n = 1; n <= TOTAL; n++) grid.appendChild(makeTile(n));
+    }
+
+    function autoLoadRelative() {
+      renderBaseGrid();
+      const folder = document.getElementById('folderInput').value;
+      const status = document.getElementById('status');
+      let loaded = 0;
+      let finished = 0;
+
+      for (let n = 1; n <= TOTAL; n++) {
+        const tile = document.querySelector(`.tile[data-n="${n}"]`);
+        const img = tile.querySelector('img');
+        const file = tile.querySelector('.file-name');
+        const paths = candidatePaths(folder, n);
+
+        loadWithFallback(
+          img,
+          paths,
+          (path) => {
+            loaded++;
+            finished++;
+            tile.classList.remove('missing');
+            file.textContent = path.split('/').pop();
+            status.textContent = `Loaded ${loaded}/${TOTAL} icons from relative paths.`;
+          },
+          () => {
+            finished++;
+            file.textContent = 'not found';
+            status.textContent = `Loaded ${loaded}/${TOTAL} icons from relative paths.`;
+          }
+        );
+      }
+    }
+
+    function extractNumberFromFilename(name) {
+      const lower = name.toLowerCase();
+      const stem = lower.replace(/\.(svg|png|webp|jpe?g)$/i, '');
+      const exact = stem.match(/^(?:icon[-_ ]?)?0?([1-9]|[1-7][0-9]|8[0-4])$/);
+      if (exact) return Number(exact[1]);
+      const dotted = stem.match(/^0[.\-_ ]([1-9]|[1-7][0-9]|8[0-4])$/);
+      if (dotted) return Number(dotted[1]);
+      const any = stem.match(/(?:^|[^0-9])0?([1-9]|[1-7][0-9]|8[0-4])(?:[^0-9]|$)/);
+      return any ? Number(any[1]) : null;
+    }
+
+    function renderFromPickedFiles(files) {
+      renderBaseGrid();
+      const status = document.getElementById('status');
+      const map = new Map();
+
+      [...files]
+        .filter(file => /\.(svg|png|webp|jpe?g)$/i.test(file.name))
+        .forEach(file => {
+          const n = extractNumberFromFilename(file.name);
+          if (n && !map.has(n)) map.set(n, file);
+        });
+
+      for (let n = 1; n <= TOTAL; n++) {
+        const tile = document.querySelector(`.tile[data-n="${n}"]`);
+        const img = tile.querySelector('img');
+        const fileName = tile.querySelector('.file-name');
+        const file = map.get(n);
+        if (!file) continue;
+        tile.classList.remove('missing');
+        img.src = URL.createObjectURL(file);
+        fileName.textContent = file.name;
+      }
+
+      status.textContent = `Loaded ${map.size}/${TOTAL} icons from selected folder.`;
+    }
+
+    document.getElementById('reloadBtn').addEventListener('click', autoLoadRelative);
+    document.getElementById('folderInput').addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') autoLoadRelative();
+    });
+    document.getElementById('dirInput').addEventListener('change', (event) => {
+      renderFromPickedFiles(event.target.files || []);
+    });
+
+    autoLoadRelative();
+  </script>
+</body>
+</html>
